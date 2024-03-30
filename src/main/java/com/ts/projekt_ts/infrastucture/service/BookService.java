@@ -25,5 +25,8 @@ public class BookService {
     public BookEntity create(BookEntity book){
         return bookRepository.save(book);
     }
+    public void delete(long id){
+        bookRepository.deleteById(id);
+    }
 
 }
