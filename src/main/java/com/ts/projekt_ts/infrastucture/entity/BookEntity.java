@@ -27,8 +27,12 @@ public class BookEntity {
     private String publisher;
 
     @Basic
-    @Column(name = "publication_year")
-    private String publication_year;
+    @Column(name = "publicationYear")
+    private int publicationYear;
+
+    @Basic
+    @Column(name = "avaliableCopies")
+    private int avaliableCopies;
 
     public void setId(long id) {
         this.id = id;
@@ -50,12 +54,12 @@ public class BookEntity {
         this.publisher = publisher;
     }
 
-    public void setPublication_year(String publication_year) {
-        this.publication_year = publication_year;
+    public void setPublicationYear(String publicationYear) {
+        this.publicationYear = Integer.parseInt(publicationYear);
     }
 
-    public void setAvaliable_copies(String avaliable_copies) {
-        this.avaliable_copies = avaliable_copies;
+    public void setAvaliableCopies(String avaliableCopies) {
+        this.avaliableCopies = Integer.parseInt(avaliableCopies);
     }
 
     public long getId() {
@@ -78,15 +82,12 @@ public class BookEntity {
         return publisher;
     }
 
-    public String getPublication_year() {
-        return publication_year;
+    public int getPublicationYear() {
+        return publicationYear;
     }
 
-    public String getAvaliable_copies() {
-        return avaliable_copies;
+    public int getAvaliableCopies() {
+        return avaliableCopies;
     }
 
-    @Basic
-    @Column(name = "avaliable_copies")
-    private String avaliable_copies;
 }
