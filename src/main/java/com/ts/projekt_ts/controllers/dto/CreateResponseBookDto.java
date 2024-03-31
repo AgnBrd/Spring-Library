@@ -1,6 +1,6 @@
 package com.ts.projekt_ts.controllers.dto;
 
-public class CreateResponseDto {
+public class CreateResponseBookDto {
     private long id;
     private String isbn;
     private String title;
@@ -9,7 +9,7 @@ public class CreateResponseDto {
     private int publicationYear;
     private int avaliableCopies;
 
-    public CreateResponseDto(long id, String isbn, String title, String author, String publisher, int publicationYear, int avaliableCopies) {
+    public CreateResponseBookDto(long id, String isbn, String title, String author, String publisher, int publicationYear, int avaliableCopies) {
         this.id = id;
         this.isbn = isbn;
         this.title = title;
@@ -19,7 +19,7 @@ public class CreateResponseDto {
         this.avaliableCopies = avaliableCopies;
     }
 
-    public CreateResponseDto() {
+    public CreateResponseBookDto() {
     }
     public long getId(){
         return id;
