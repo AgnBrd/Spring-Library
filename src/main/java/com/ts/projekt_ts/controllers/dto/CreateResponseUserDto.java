@@ -1,6 +1,6 @@
 package com.ts.projekt_ts.controllers.dto;
 
-import com.ts.projekt_ts.infrastucture.entity.UserRole;
+import com.ts.projekt_ts.commonTypes.UserRole;
 
 public class CreateResponseUserDto {
     private long id;

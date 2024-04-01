@@ -1,5 +1,6 @@
 package com.ts.projekt_ts.infrastucture.entity;
 
+import com.ts.projekt_ts.commonTypes.UserRole;
 import jakarta.persistence.*;
 
 @Entity
@@ -29,6 +30,8 @@ public class UserEntity {
     @Basic
     @Column(name = "email", unique = true)
     private String email;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private AuthEntity auth;
 
     public void setId(long id) {
         this.id = id;
