@@ -1,5 +1,6 @@
 package com.ts.projekt_ts.infrastucture.service;
 
+import com.ts.projekt_ts.controllers.dto.LoginDto;
 import com.ts.projekt_ts.controllers.dto.RegisterDto;
 import com.ts.projekt_ts.controllers.dto.RegisterResponseDto;
 import com.ts.projekt_ts.infrastucture.entity.AuthEntity;
@@ -8,6 +9,7 @@ import com.ts.projekt_ts.infrastucture.repository.AuthRepository;
 import com.ts.projekt_ts.infrastucture.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 @Service
 public class AuthService {
@@ -32,5 +34,13 @@ public class AuthService {
         AuthEntity createdAuth = authRepository.save(authEntity);
 
         return new RegisterResponseDto(createdAuth.getUsername(), createdAuth.getRole());
+    }
+
+    public void login(LoginDto dto){
+        AuthEntity authEntity = authRepository.findByUsername(dto.getUsername()).orElseThrow(RuntimeException::new);
+
+        if(!authEntity.getPassword().equals(dto.getPassword())){
+            throw new RuntimeException();
+        }
     }
 }
