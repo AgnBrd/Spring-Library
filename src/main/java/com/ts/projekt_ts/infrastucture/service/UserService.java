@@ -4,7 +4,7 @@ import com.ts.projekt_ts.controllers.dto.CreateResponseUserDto;
 import com.ts.projekt_ts.controllers.dto.GetUserDto;
 import com.ts.projekt_ts.controllers.dto.CreateUserDto;
 import com.ts.projekt_ts.infrastucture.entity.UserEntity;
-import com.ts.projekt_ts.infrastucture.entity.UserRole;
+import com.ts.projekt_ts.commonTypes.UserRole;
 import com.ts.projekt_ts.infrastucture.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
