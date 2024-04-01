@@ -1,5 +1,7 @@
 package com.ts.projekt_ts.controllers;
 
+import com.ts.projekt_ts.controllers.dto.LoginDto;
+import com.ts.projekt_ts.controllers.dto.LoginResponseDto;
 import com.ts.projekt_ts.controllers.dto.RegisterDto;
 import com.ts.projekt_ts.controllers.dto.RegisterResponseDto;
 import com.ts.projekt_ts.infrastucture.service.AuthService;
@@ -20,6 +22,12 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<RegisterResponseDto> register(@RequestBody RegisterDto requestBady){
         RegisterResponseDto dto = authService.register(requestBady);
+        return new ResponseEntity<>(dto, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDto> register(@RequestBody LoginDto requestBady){
+        LoginResponseDto dto = authService.login(requestBady);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 }

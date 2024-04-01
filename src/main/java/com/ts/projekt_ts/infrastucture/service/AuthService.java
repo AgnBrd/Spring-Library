@@ -1,5 +1,7 @@
 package com.ts.projekt_ts.infrastucture.service;
 
+import com.ts.projekt_ts.controllers.dto.LoginDto;
+import com.ts.projekt_ts.controllers.dto.LoginResponseDto;
 import com.ts.projekt_ts.controllers.dto.RegisterDto;
 import com.ts.projekt_ts.controllers.dto.RegisterResponseDto;
 import com.ts.projekt_ts.infrastucture.entity.AuthEntity;
@@ -13,10 +15,12 @@ import org.springframework.stereotype.Service;
 public class AuthService {
     private final AuthRepository authRepository;
     private final UserRepository userRepository;
+    private final JwtService jwtService;
     @Autowired
-    public AuthService(AuthRepository authRepository, UserRepository userRepository) {
+    public AuthService(AuthRepository authRepository, UserRepository userRepository, JwtService jwtService) {
         this.authRepository = authRepository;
         this.userRepository = userRepository;
+        this.jwtService = jwtService;
     }
 
     public RegisterResponseDto register(RegisterDto dto){
@@ -33,4 +37,14 @@ public class AuthService {
 
         return new RegisterResponseDto(createdAuth.getUsername(), createdAuth.getRole());
     }
+
+    public LoginResponseDto login(LoginDto dto){
+        AuthEntity authEntity = authRepository.findByUsername(dto.getUsername()).orElseThrow(()->new RuntimeException());
+        if(!authEntity.getPassword().equals(dto.getPassword())){
+            throw new RuntimeException();
+        }
+        String token = jwtService.generateToken(authEntity);
+        return new LoginResponseDto(token);
+    }
+
 }
