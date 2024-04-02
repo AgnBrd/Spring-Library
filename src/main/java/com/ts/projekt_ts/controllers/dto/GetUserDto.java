@@ -4,20 +4,20 @@ import com.ts.projekt_ts.commonTypes.UserRole;
 
 public class GetUserDto {
     private long id;
-    private String login;
+    private String username;
     private String name;
-    private String role;
+    private UserRole role;
     private String email;
 
-    public GetUserDto(long id, String login, String name, String role, String email) {
+    public GetUserDto(long id, String username, String name, UserRole role, String email) {
         this.id = id;
-        this.login = login;
+        this.username = username;
         this.name = name;
         this.role = role;
         this.email = email;
     }
 
-    public GetUserDto(long id, String login, String name, UserRole role, String email) {
+    public GetUserDto() {
     }
 
     public long getId() {
@@ -28,12 +28,12 @@ public class GetUserDto {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName() {
@@ -44,11 +44,11 @@ public class GetUserDto {
         this.name = name;
     }
 
-    public String getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 

@@ -24,25 +24,25 @@ public class UserService {
     public List<GetUserDto> getAll() {
         var users = userRepository.findAll();
         return users.stream()
-                .map(user -> new GetUserDto(user.getId(), user.getLogin(), user.getName(), user.getRole(), user.getEmail()))
+                .map(user -> new GetUserDto(user.getId(), user.getUsername(), user.getName(), user.getRole(), user.getEmail()))
                 .collect(Collectors.toList());
     }
 
     public GetUserDto getOne(long id) {
         var user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-        return new GetUserDto(user.getId(), user.getLogin(), user.getName(), user.getRole(), user.getEmail());
+        return new GetUserDto(user.getId(), user.getUsername(), user.getName(), user.getRole(), user.getEmail());
     }
 
     public CreateResponseUserDto create(CreateUserDto user) {
         var userEntity = new UserEntity();
-        userEntity.setLogin(user.getLogin());
+        userEntity.setUsername(user.getUsername());
         userEntity.setPassword(user.getPassword());
         userEntity.setName(user.getName());
         userEntity.setRole(UserRole.valueOf(user.getRole()));
         userEntity.setEmail(user.getEmail());
         var newUser = userRepository.save(userEntity);
-        return new CreateResponseUserDto(newUser.getId(), newUser.getLogin(), newUser.getName(), newUser.getRole(), newUser.getEmail());
+        return new CreateResponseUserDto(newUser.getId(), newUser.getUsername(), newUser.getName(), newUser.getRole(), newUser.getEmail());
     }
 
     public void delete(long id) {
