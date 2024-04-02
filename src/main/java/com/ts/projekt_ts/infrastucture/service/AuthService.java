@@ -47,13 +47,12 @@ public class AuthService {
 
     public LoginResponseDto login(LoginDto dto){
         AuthEntity authEntity = authRepository.findByUsername(dto.getUsername()).orElseThrow(RuntimeException::new);
-        if(!passwordEncoder.matches(authEntity.getPassword(), dto.getPassword())){
+        if(!passwordEncoder.matches(dto.getPassword(), authEntity.getPassword())){
             throw new RuntimeException();
         }
+            String token = jwtService.generateToken(authEntity);
+            return new LoginResponseDto(token);
 
-        String token = jwtService.generateToken(authEntity);
-
-        return new LoginResponseDto(token);
     }
 
 }
