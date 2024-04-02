@@ -1,19 +1,20 @@
 package com.ts.projekt_ts.controllers.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ts.projekt_ts.infrastucture.entity.BookEntity;
 import com.ts.projekt_ts.infrastucture.entity.UserEntity;
 import java.util.Date;
 
 public class CreateResponseLoanDto {
     private long id;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date loanDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date endDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date returnDate;
     private long userId;
     private long bookId;
-
-    public CreateResponseLoanDto(long id, Date loanDate, Date endDate, Date returnDate, UserEntity user, BookEntity book) {
-    }
 
     public CreateResponseLoanDto(long id, Date loanDate, Date endDate, Date returnDate, long userId, long bookId) {
         this.id = id;
@@ -22,6 +23,9 @@ public class CreateResponseLoanDto {
         this.returnDate = returnDate;
         this.userId = userId;
         this.bookId = bookId;
+    }
+
+    public CreateResponseLoanDto() {
     }
 
     public long getId() {

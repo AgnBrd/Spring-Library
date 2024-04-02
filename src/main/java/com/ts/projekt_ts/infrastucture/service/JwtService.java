@@ -22,7 +22,13 @@ public class JwtService {
     @Value("$token.signing.key")
     String jwtSigningKey;
     public String generateToken(AuthEntity userDetails){
+
         return generateToken(new HashMap<>(), userDetails);
+    }
+
+    public UserRole extractRole(String token){
+        String srtingRole = extractClaim(token, (claims) -> claims.get("role", String.class));
+        return UserRole.valueOf(srtingRole);
     }
     public boolean isTokenValid(String token){
         try{
@@ -31,15 +37,18 @@ public class JwtService {
             return false;
         }
     }
-    private String extractUsername(String token){
+    public String extractUsername(String token){
+
         return extractClaim(token, Claims::getSubject);
     }
 
     public boolean isTokenExpired(String token){
-    return extractExpiration(token).before(new Date());
+
+        return extractExpiration(token).before(new Date());
     }
 
-    private Date extractExpiration(String token){
+    public Date extractExpiration(String token){
+
         return extractClaim(token, Claims::getExpiration);
     }
 
@@ -52,10 +61,10 @@ public class JwtService {
         return Jwts.parser().verifyWith(getSingingKey()).build().parseSignedClaims(token).getPayload();
     }
 
-    public String generateToken(Map<String, Object> extraClames, AuthEntity userDetails){
-        extraClames.put("role", userDetails.getRole());
+    public String generateToken(Map<String, Object> extraClaims, AuthEntity userDetails){
+        extraClaims.put("role", userDetails.getRole());
         return Jwts.builder()
-                .claims(extraClames)
+                .claims(extraClaims)
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + tokenLifeTime))

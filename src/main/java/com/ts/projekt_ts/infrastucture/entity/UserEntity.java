@@ -12,8 +12,8 @@ public class UserEntity {
     private long id;
 
     @Basic
-    @Column(name = "login", unique = true)
-    private String login;
+    @Column(name = "username", unique = true)
+    private String username;
 
     @Basic
     @Column(name = "password")
@@ -37,8 +37,8 @@ public class UserEntity {
         this.id = id;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
@@ -61,8 +61,8 @@ public class UserEntity {
         return id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {

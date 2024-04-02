@@ -1,12 +1,16 @@
 package com.ts.projekt_ts.controllers.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ts.projekt_ts.infrastucture.entity.BookEntity;
 
 import java.util.Date;
 
 public class CreateLoanDto {
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date loanDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date endDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date returnDate;
     private long userId;
     private long bookId;

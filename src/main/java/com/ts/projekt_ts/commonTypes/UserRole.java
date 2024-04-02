@@ -1,7 +1,7 @@
 package com.ts.projekt_ts.commonTypes;
 
 public enum UserRole {
-    READER,
-    ADMIN,
-    EMPLOYEE;
+    ROLE_READER,
+    ROLE_ADMIN,
+    ROLE_EMPLOYEE;
 }

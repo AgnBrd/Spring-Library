@@ -33,14 +33,14 @@ public class LoanService {
 
     public List<GetLoanDto> getAll() {
         return loanRepository.findAll().stream()
-                .map(loan -> new GetLoanDto(loan.getId(), loan.getLoanDate(), loan.getEndDate(), loan.getReturnDate(), Optional.ofNullable(loan.getBook()), Optional.ofNullable(loan.getUser())))
+                .map(loan -> new GetLoanDto(loan.getId(), loan.getBook().getId(), loan.getUser().getId()))// loan.getLoanDate(), loan.getEndDate(), loan.getReturnDate(), loan.getBook(), loan.getUser())
                 .collect(Collectors.toList());
     }
 
     public GetLoanDto getOne(long id) {
         LoanEntity loan = loanRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Loan not found"));
-        return new GetLoanDto(loan.getId(), loan.getLoanDate(), loan.getEndDate(), loan.getReturnDate(), Optional.ofNullable(loan.getBook()), Optional.ofNullable(loan.getUser()));
+        return new GetLoanDto(loan.getId(), loan.getUser().getId(), loan.getBook().getId());//loan.getLoanDate(), loan.getEndDate(), loan.getReturnDate(), Optional.ofNullable(loan.getBook()), Optional.ofNullable(loan.getUser()));
     }
 
     public CreateResponseLoanDto create(CreateLoanDto loan) {
@@ -53,7 +53,9 @@ public class LoanService {
         loanEntity.setUser(user);
         loanEntity.setBook(book);
         LoanEntity newLoan = loanRepository.save(loanEntity);
-        return new CreateResponseLoanDto(newLoan.getId(), newLoan.getLoanDate(), newLoan.getEndDate(), newLoan.getReturnDate(), newLoan.getUser(), newLoan.getBook());
+        long userId = newLoan.getUser().getId();
+        long bookId = newLoan.getBook().getId();
+        return new CreateResponseLoanDto(newLoan.getId(), newLoan.getLoanDate(), newLoan.getEndDate(), newLoan.getReturnDate(), userId, bookId);// newLoan.getUser(), newLoan.getBook());
     }
 
     public void delete(long id) {

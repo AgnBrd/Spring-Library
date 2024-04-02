@@ -17,7 +17,7 @@ public class GetLoanDto {
         this.bookId = bookId;
     }
 
-    public GetLoanDto(long id, Date loanDate, Date endDate, Date returnDate, Optional<BookEntity> book, Optional<UserEntity> user) {
+    public GetLoanDto() {
     }
 
     public long getId() {

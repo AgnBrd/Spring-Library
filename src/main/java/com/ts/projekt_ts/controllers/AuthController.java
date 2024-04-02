@@ -5,9 +5,11 @@ import com.ts.projekt_ts.controllers.dto.LoginResponseDto;
 import com.ts.projekt_ts.controllers.dto.RegisterDto;
 import com.ts.projekt_ts.controllers.dto.RegisterResponseDto;
 import com.ts.projekt_ts.infrastucture.service.AuthService;
+import jakarta.annotation.security.PermitAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,14 +22,14 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<RegisterResponseDto> register(@RequestBody RegisterDto requestBady){
-        RegisterResponseDto dto = authService.register(requestBady);
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<RegisterResponseDto> register(@RequestBody RegisterDto requestBody){
+        RegisterResponseDto dto = authService.register(requestBody);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
-
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDto> register(@RequestBody LoginDto requestBady){
-        LoginResponseDto dto = authService.login(requestBady);
+    public ResponseEntity<LoginResponseDto> login(@RequestBody LoginDto requestBody){
+        LoginResponseDto dto = authService.login(requestBody);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 }
