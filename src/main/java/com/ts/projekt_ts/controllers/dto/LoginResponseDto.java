@@ -1,8 +1,7 @@
 package com.ts.projekt_ts.controllers.dto;
 
 public class LoginResponseDto {
-<<<<<<< HEAD
-=======
+
     private String token;
 
     public LoginResponseDto(String token) {
@@ -19,5 +18,5 @@ public class LoginResponseDto {
     public void setToken(String token) {
         this.token = token;
     }
->>>>>>> develop
+
 }

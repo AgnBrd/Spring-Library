@@ -1,33 +1,33 @@
 package com.ts.projekt_ts.infrastucture.service;
+//
+//
+//import com.ts.projekt_ts.infrastucture.entity.AuthEntity;
+//import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
+//import org.springframework.stereotype.Service;
+//import java.util.Map;
+//@Service
+//public class JwtService {
+//    public String generateToken(AuthEntity userDetails){
+//        return null;
+//    }
+//
+//    public boolean isTokenValid(String token){
+//        isTokenExpired(token);
+//        veryfy(token);
+//        return true;
+//    }
+//
+//    private boolean isTokenExpired(String token){
+//        return false;
+//    }
+//
+//    private boolean veryfy(String token) {
+//        return true;
+//    }
+//    private String generateToken(Map<String, Object> extraClames, AuthEntity userDetails){
+//
+//        return "ss";
 
-<<<<<<< HEAD
-import com.ts.projekt_ts.infrastucture.entity.AuthEntity;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
-import org.springframework.stereotype.Service;
-import java.util.Map;
-@Service
-public class JwtService {
-    public String generateToken(AuthEntity userDetails){
-        return null;
-    }
-
-    public boolean isTokenValid(String token){
-        isTokenExpired(token);
-        veryfy(token);
-        return true;
-    }
-
-    private boolean isTokenExpired(String token){
-        return false;
-    }
-
-    private boolean veryfy(String token) {
-        return true;
-    }
-    private String generateToken(Map<String, Object> extraClames, AuthEntity userDetails){
-
-        return "ss";
-=======
 import com.ts.projekt_ts.commonTypes.UserRole;
 import com.ts.projekt_ts.infrastucture.entity.AuthEntity;
 import io.jsonwebtoken.Claims;
@@ -38,7 +38,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
-import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -70,7 +69,7 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public boolean isTokenExpired(String token){
+    private boolean isTokenExpired(String token){
 
         return extractExpiration(token).before(new Date());
     }
@@ -103,7 +102,7 @@ public class JwtService {
     private SecretKey getSingingKey(){
         byte[] keyBytes = Decoders.BASE64.decode(jwtSigningKey);
         return Keys.hmacShaKeyFor(keyBytes);
->>>>>>> develop
+
     }
 
 }

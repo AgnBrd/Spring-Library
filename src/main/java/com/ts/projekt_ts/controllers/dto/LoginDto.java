@@ -9,12 +9,8 @@ public class LoginDto {
         this.password = password;
     }
 
-<<<<<<< HEAD
-=======
     public LoginDto() {
     }
-
->>>>>>> develop
     public String getUsername() {
         return username;
     }

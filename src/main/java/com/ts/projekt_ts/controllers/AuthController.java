@@ -32,8 +32,8 @@ public class AuthController {
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
-    @PostMapping("/login")
-    public void login(@RequestBody LoginDto requestBady){
-        authService.login(requestBady);
-    }
+//    @PostMapping("/login")
+//    public void login(@RequestBody LoginDto requestBady){
+//        authService.login(requestBady);
+//    }
 }
