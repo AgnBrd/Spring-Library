@@ -2,14 +2,12 @@ package com.ts.projekt_ts.controllers.dto;
 
 public class CreateUserDto {
     private String username;
-    private String password;
     private String name;
     private String role;
     private String email;
 
-    public CreateUserDto(String username, String password, String name, String role, String email) {
+    public CreateUserDto(String username, String name, String role, String email) {
         this.username = username;
-        this.password = password;
         this.name = name;
         this.role = role;
         this.email = email;
@@ -24,14 +22,6 @@ public class CreateUserDto {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getName() {

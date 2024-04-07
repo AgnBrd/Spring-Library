@@ -16,10 +16,6 @@ public class UserEntity {
     private String username;
 
     @Basic
-    @Column(name = "password")
-    private String password;
-
-    @Basic
     @Column(name = "name")
     private String name;
 
@@ -41,10 +37,6 @@ public class UserEntity {
         this.username = username;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -63,10 +55,6 @@ public class UserEntity {
 
     public String getUsername() {
         return username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public String getName() {

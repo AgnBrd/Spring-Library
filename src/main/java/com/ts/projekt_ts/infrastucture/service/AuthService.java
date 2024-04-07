@@ -1,5 +1,6 @@
 package com.ts.projekt_ts.infrastucture.service;
 
+import com.ts.projekt_ts.commonTypes.UserRole;
 import com.ts.projekt_ts.controllers.dto.LoginDto;
 import com.ts.projekt_ts.controllers.dto.LoginResponseDto;
 import com.ts.projekt_ts.controllers.dto.RegisterDto;
@@ -33,6 +34,9 @@ public class AuthService {
 
     public RegisterResponseDto register(RegisterDto dto){
         UserEntity userEntity = new UserEntity();
+        userEntity.setUsername(dto.getUsername());
+        userEntity.setName(dto.getName());
+        userEntity.setRole(dto.getRole());
         userEntity.setEmail(dto.getEmail());
         userRepository.save(userEntity);
 
@@ -47,13 +51,13 @@ public class AuthService {
     }
 
     public LoginResponseDto login(LoginDto dto){
-        AuthEntity authEntity = authRepository.findByUsername(dto.getUsername()).orElseThrow(RuntimeException::new);
+        AuthEntity authEntity = authRepository.findByUsername(dto.getUsername()).orElseThrow(() -> new RuntimeException("user not found"));
         if(!passwordEncoder.matches(authEntity.getPassword(), dto.getPassword())){
-            throw new RuntimeException();
-        }
+            throw new RuntimeException("incorect password");
+        } else {
 
         String token = jwtService.generateToken(authEntity);
 
-        return new LoginResponseDto(token);
+        return new LoginResponseDto(token);}
     }
 }
