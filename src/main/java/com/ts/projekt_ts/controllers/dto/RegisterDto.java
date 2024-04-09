@@ -1,12 +1,20 @@
 package com.ts.projekt_ts.controllers.dto;
 
 import com.ts.projekt_ts.commonTypes.UserRole;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class RegisterDto {
+    @NotBlank(message = "Username is required")
     private String username;
     private String name;
+    @NotNull(message = "Role is required")
     private UserRole role;
+    @NotBlank(message = "Password is required")
     private String password;
+    @NotBlank(message = "Email is required")
+//    @Email
     private String email;
 
     public RegisterDto(String username, String name, String email, String password, UserRole role) {

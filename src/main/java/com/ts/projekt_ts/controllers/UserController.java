@@ -1,18 +1,18 @@
 package com.ts.projekt_ts.controllers;
 
-import com.ts.projekt_ts.controllers.dto.CreateResponseBookDto;
-import com.ts.projekt_ts.controllers.dto.CreateResponseUserDto;
-import com.ts.projekt_ts.controllers.dto.GetUserDto;
-import com.ts.projekt_ts.controllers.dto.CreateUserDto;
+import com.ts.projekt_ts.controllers.dto.*;
 import com.ts.projekt_ts.infrastucture.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping
+
 public class UserController {
     private final UserService userService;
 
@@ -20,26 +20,35 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("/api/users")
+    @PreAuthorize("hasRole('EMPLOEE') || hasRole('ADMIN')")
     public List<GetUserDto> getAllUsers() {
         return userService.getAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/api/users/{id}")
+    @PreAuthorize("hasRole('EMPLOEE') || hasRole('ADMIN')")
     public GetUserDto getOne(@PathVariable long id) {
         return userService.getOne(id);
     }
 
-    @PostMapping
-    public ResponseEntity<CreateResponseUserDto> create(@RequestBody CreateUserDto user) {
-        var newUser = userService.create(user);
-        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
-    }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/api/users/{id}")
+    @PreAuthorize("hasRole('EMPLOEE') || hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable long id) {
         userService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/api/users/register")
+    public ResponseEntity<RegisterResponseDto> register(@Validated @RequestBody RegisterDto requestBody){
+        RegisterResponseDto dto = userService.register(requestBody);
+        return new ResponseEntity<>(dto, HttpStatus.CREATED);
+    }
+    @PostMapping("/api/users/login")
+    public ResponseEntity<LoginResponseDto> login(@RequestBody LoginDto requestBody){
+        LoginResponseDto dto = userService.login(requestBody);
+        return new ResponseEntity<>(dto, HttpStatus.ACCEPTED);
     }
 }
 

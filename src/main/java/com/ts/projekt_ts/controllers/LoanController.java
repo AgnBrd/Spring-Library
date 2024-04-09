@@ -6,6 +6,7 @@ import com.ts.projekt_ts.controllers.dto.GetLoanDto;
 import com.ts.projekt_ts.infrastucture.service.LoanService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,22 +21,26 @@ public class LoanController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('EMPLOEE') || hasRole('ADMIN')")
     public List<GetLoanDto> getAllLoans() {
         return loanService.getAll();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('EMPLOEE') || hasRole('ADMIN')")
     public GetLoanDto getOne(@PathVariable long id) {
         return loanService.getOne(id);
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('EMPLOEE') || hasRole('ADMIN')")
     public ResponseEntity<CreateResponseLoanDto> create(@RequestBody CreateLoanDto loan) {
         var newLoan = loanService.create(loan);
         return new ResponseEntity<>(newLoan, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('EMPLOEE') || hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable long id) {
         loanService.delete(id);
         return ResponseEntity.noContent().build();

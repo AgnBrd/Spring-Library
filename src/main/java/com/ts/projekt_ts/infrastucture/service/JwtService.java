@@ -29,7 +29,7 @@ package com.ts.projekt_ts.infrastucture.service;
 //        return "ss";
 
 import com.ts.projekt_ts.commonTypes.UserRole;
-import com.ts.projekt_ts.infrastucture.entity.AuthEntity;
+import com.ts.projekt_ts.infrastucture.entity.UserEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -48,7 +48,7 @@ public class JwtService {
     long tokenLifeTime = 1000 * 60 * 24;
     @Value("$token.signing.key")
     String jwtSigningKey;
-    public String generateToken(AuthEntity userDetails){
+    public String generateToken(UserEntity userDetails){
 
         return generateToken(new HashMap<>(), userDetails);
     }
@@ -88,7 +88,7 @@ public class JwtService {
         return Jwts.parser().verifyWith(getSingingKey()).build().parseSignedClaims(token).getPayload();
     }
 
-    public String generateToken(Map<String, Object> extraClaims, AuthEntity userDetails){
+    public String generateToken(Map<String, Object> extraClaims, UserEntity userDetails){
         extraClaims.put("role", userDetails.getRole());
         return Jwts.builder()
                 .claims(extraClaims)

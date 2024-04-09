@@ -12,7 +12,7 @@ public class UserEntity {
     private long id;
 
     @Basic
-    @Column(name = "username", unique = true)
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
 
     @Basic
@@ -24,14 +24,12 @@ public class UserEntity {
     private String name;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
     private UserRole role;
 
     @Basic
-    @Column(name = "email", unique = true)
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private AuthEntity auth;
 
     public void setId(long id) {
         this.id = id;

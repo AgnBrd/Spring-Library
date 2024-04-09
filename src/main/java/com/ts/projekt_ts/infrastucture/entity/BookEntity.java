@@ -11,7 +11,7 @@ public class BookEntity {
     private long id;
 
     @Basic
-    @Column(name = "isbn", unique = true)
+    @Column(name = "isbn", unique = true, nullable = false)
     private String isbn;
 
     @Basic

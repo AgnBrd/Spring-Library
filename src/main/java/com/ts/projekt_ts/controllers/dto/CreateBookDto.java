@@ -1,6 +1,9 @@
 package com.ts.projekt_ts.controllers.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class CreateBookDto {
+    @NotBlank(message = "Isbn is required")
     private String isbn;
     private String title;
     private String author;
