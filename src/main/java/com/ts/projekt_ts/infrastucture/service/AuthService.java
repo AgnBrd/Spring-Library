@@ -47,7 +47,7 @@ public class AuthService {
         authEntity.setUser(userEntity);
         authRepository.save(authEntity);
 
-        return new RegisterResponseDto(userEntity.getId(), authEntity.getUsername(), authEntity.getRole());
+        return new RegisterResponseDto(userEntity.getUsername(), authEntity.getRole());
     }
 
     public LoginResponseDto login(LoginDto dto){

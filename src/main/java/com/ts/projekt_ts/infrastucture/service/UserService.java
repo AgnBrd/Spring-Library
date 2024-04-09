@@ -34,16 +34,16 @@ public class UserService {
         return new GetUserDto(user.getId(), user.getUsername(), user.getName(), user.getRole(), user.getEmail());
     }
 
-//    public CreateResponseUserDto create(CreateUserDto user) {
-//        var userEntity = new UserEntity();
-//        userEntity.setUsername(user.getUsername());
+    public CreateResponseUserDto create(CreateUserDto user) {
+        var userEntity = new UserEntity();
+        userEntity.setUsername(user.getUsername());
 //        userEntity.setPassword(user.getPassword());
-//        userEntity.setName(user.getName());
+        userEntity.setName(user.getName());
 //        userEntity.setRole(UserRole.valueOf(user.getRole()));
 //        userEntity.setEmail(user.getEmail());
-//        var newUser = userRepository.save(userEntity);
-//        return new CreateResponseUserDto(newUser.getId(), newUser.getUsername(), newUser.getName(), newUser.getRole(), newUser.getEmail());
-//    }
+        var newUser = userRepository.save(userEntity);
+        return new CreateResponseUserDto(newUser.getId(), newUser.getUsername(), newUser.getName(), newUser.getRole(), newUser.getEmail());
+    }
 
     public void delete(long id) {
         if (!userRepository.existsById(id)) {

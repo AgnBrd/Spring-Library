@@ -30,11 +30,11 @@ public class UserController {
         return userService.getOne(id);
     }
 
-//    @PostMapping
-//    public ResponseEntity<CreateResponseUserDto> create(@RequestBody CreateUserDto user) {
-//        var newUser = userService.create(user);
-//        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
-//    }
+    @PostMapping
+    public ResponseEntity<CreateResponseUserDto> create(@RequestBody CreateUserDto user) {
+        var newUser = userService.create(user);
+        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable long id) {

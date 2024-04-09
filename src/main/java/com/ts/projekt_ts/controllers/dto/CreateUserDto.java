@@ -3,14 +3,14 @@ package com.ts.projekt_ts.controllers.dto;
 public class CreateUserDto {
     private String username;
     private String name;
-    private String role;
-    private String email;
+//    private String role;
+//    private String email;
 
     public CreateUserDto(String username, String name, String role, String email) {
         this.username = username;
         this.name = name;
-        this.role = role;
-        this.email = email;
+//        this.role = role;
+//        this.email = email;
     }
 
     public CreateUserDto() {
@@ -32,20 +32,20 @@ public class CreateUserDto {
         this.name = name;
     }
 
-    public String getRole() {
-        return role;
-    }
+//    public String getRole() {
+//        return role;
+//    }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+//    public void setRole(String role) {
+//        this.role = role;
+//    }
 
-    public String getEmail() {
-        return email;
-    }
+//    public String getEmail() {
+//        return email;
+//    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
 }
 
