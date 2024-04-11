@@ -68,7 +68,7 @@ public class UserService {
         userEntity.setEmail(dto.getEmail());
         userRepository.save(userEntity);
 
-        return new RegisterResponseDto(userEntity.getUsername(), userEntity.getRole());
+        return new RegisterResponseDto(userEntity.getId(), userEntity.getUsername(), userEntity.getRole());
     }
 
     public LoginResponseDto login(LoginDto dto) {

@@ -3,7 +3,6 @@ package com.ts.projekt_ts.infrastucture.service;
 import com.ts.projekt_ts.controllers.dto.CreateLoanDto;
 import com.ts.projekt_ts.controllers.dto.CreateResponseLoanDto;
 import com.ts.projekt_ts.controllers.dto.GetLoanDto;
-import com.ts.projekt_ts.controllers.dto.GetUserDto;
 import com.ts.projekt_ts.infrastucture.entity.BookEntity;
 import com.ts.projekt_ts.infrastucture.entity.LoanEntity;
 import com.ts.projekt_ts.infrastucture.entity.UserEntity;

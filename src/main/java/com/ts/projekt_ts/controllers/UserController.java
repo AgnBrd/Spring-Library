@@ -30,7 +30,7 @@ public class UserController {
     @PreAuthorize("hasRole('EMPLOEE') || hasRole('ADMIN')")
     public GetUserDto getOne(@PathVariable long id) {
         return userService.getOne(id);
-    }
+}
 
 
     @DeleteMapping("/api/users/{id}")
