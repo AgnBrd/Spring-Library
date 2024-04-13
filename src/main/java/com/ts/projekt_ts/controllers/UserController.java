@@ -21,20 +21,20 @@ public class UserController {
     }
 
     @GetMapping("/api/users")
-    @PreAuthorize("hasRole('EMPLOEE') || hasRole('ADMIN')")
+    @PreAuthorize("hasRole('EMPLOYEE') || hasRole('ADMIN')")
     public List<GetUserDto> getAllUsers() {
         return userService.getAll();
     }
 
     @GetMapping("/api/users/{id}")
-    @PreAuthorize("hasRole('EMPLOEE') || hasRole('ADMIN')")
+    @PreAuthorize("hasRole('EMPLOYEE') || hasRole('ADMIN')")
     public GetUserDto getOne(@PathVariable long id) {
         return userService.getOne(id);
 }
 
 
     @DeleteMapping("/api/users/{id}")
-    @PreAuthorize("hasRole('EMPLOEE') || hasRole('ADMIN')")
+    @PreAuthorize("hasRole('EMPLOYEE') || hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable long id) {
         userService.delete(id);
         return ResponseEntity.noContent().build();
@@ -46,7 +46,7 @@ public class UserController {
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
     @PostMapping("/api/users/login")
-    public ResponseEntity<LoginResponseDto> login(@RequestBody LoginDto requestBody){
+    public ResponseEntity<LoginResponseDto> login(@Validated @RequestBody LoginDto requestBody){
         LoginResponseDto dto = userService.login(requestBody);
         return new ResponseEntity<>(dto, HttpStatus.ACCEPTED);
     }

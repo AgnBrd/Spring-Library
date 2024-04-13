@@ -13,11 +13,11 @@ public class LoanEntity {
     private long id;
 
     @Basic
-    @Column(name = "loanDate")
+    @Column(name = "loanDate", nullable = false)
     private Date loanDate;
 
     @Basic
-    @Column(name = "endDate")
+    @Column(name = "endDate", nullable = false)
     private Date endDate;
 
     @Basic
@@ -25,11 +25,11 @@ public class LoanEntity {
     private Date returnDate;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "book_id", nullable = false)
     private BookEntity book;
 
     public void setId(long id) {

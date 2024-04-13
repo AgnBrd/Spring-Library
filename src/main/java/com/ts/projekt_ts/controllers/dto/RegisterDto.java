@@ -1,9 +1,10 @@
 package com.ts.projekt_ts.controllers.dto;
 
 import com.ts.projekt_ts.commonTypes.UserRole;
-import jakarta.validation.constraints.Email;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+
 
 public class RegisterDto {
     @NotBlank(message = "Username is required")

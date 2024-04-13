@@ -9,7 +9,7 @@ public class IsbnAlreadyExistsException extends RuntimeException{
     }
 
     public static ResponseStatusException create(String isbn){
-        IsbnAlreadyExistsException exception = new IsbnAlreadyExistsException(String.format("Book with isbn: %s is already exists.", isbn));
+        IsbnAlreadyExistsException exception = new IsbnAlreadyExistsException(String.format("Book with isbn: %s already exists.", isbn));
         return new ResponseStatusException(HttpStatus.CONFLICT, exception.getMessage(), exception);
     }
 }

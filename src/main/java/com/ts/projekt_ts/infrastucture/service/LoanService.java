@@ -54,7 +54,7 @@ public class LoanService {
         LoanEntity newLoan = loanRepository.save(loanEntity);
         long userId = newLoan.getUser().getId();
         long bookId = newLoan.getBook().getId();
-        return new CreateResponseLoanDto(newLoan.getId(), newLoan.getLoanDate(), newLoan.getEndDate(), newLoan.getReturnDate(), userId, bookId);// newLoan.getUser(), newLoan.getBook());
+        return new CreateResponseLoanDto(newLoan.getId(), newLoan.getLoanDate(), newLoan.getEndDate(), newLoan.getReturnDate(), userId, bookId);
     }
 
     public void delete(long id) {

@@ -28,14 +28,14 @@ public class BookController{
     public GetBookDto getOne(@PathVariable long id){
         return bookService.getOne(id);
     }
-    @PostMapping("/api/books/{id}")
-    @PreAuthorize("hasRole('EMPLOEE') || hasRole('ADMIN')")
+    @PostMapping("/api/books")
+    @PreAuthorize("hasRole('EMPLOYEE') || hasRole('ADMIN')")
     public ResponseEntity<CreateResponseBookDto> create(@Validated @RequestBody CreateBookDto book){
         var newBook = bookService.create(book);
         return new ResponseEntity<>(newBook, HttpStatus.CREATED);
     }
     @DeleteMapping("/api/books/{id}")
-    @PreAuthorize("hasRole('EMPLOEE') || hasRole('ADMIN')")
+    @PreAuthorize("hasRole('EMPLOYEE') || hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable long id){
         bookService.delete(id);
         return ResponseEntity.noContent().build();

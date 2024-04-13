@@ -60,6 +60,7 @@ public class UserService {
             throw EmailAlreadyExistsException.create(dto.getEmail());
         }
 
+
         var userEntity = new UserEntity();
         userEntity.setUsername(dto.getUsername());
         userEntity.setPassword(passwordEncoder.encode(dto.getPassword()));
@@ -78,7 +79,6 @@ public class UserService {
         }
 
         UserEntity userEntity = userRepository.findByUsername(dto.getUsername()).orElseThrow(() -> new RuntimeException("user not found"));
-//        String encodedPassword = passwordEncoder.encode(dto.getPassword());
         if (passwordEncoder.matches(dto.getPassword(), userEntity.getPassword())) {
             String token = jwtService.generateToken(userEntity);
 
