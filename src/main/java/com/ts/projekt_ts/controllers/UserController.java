@@ -32,6 +32,13 @@ public class UserController {
         return userService.getOne(id);
 }
 
+    @PatchMapping("/api/users/{id}")
+//    @PreAuthorize("hasRole('EMPLOYEE') || hasRole('ADMIN')")
+    public ResponseEntity<UpdateUserResponseDto> update(@PathVariable long id, @Validated @RequestBody UpdateUserDto requestBody){
+        UpdateUserResponseDto dto = userService.update(id, requestBody);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
 
     @DeleteMapping("/api/users/{id}")
     @PreAuthorize("hasRole('EMPLOYEE') || hasRole('ADMIN')")
@@ -40,10 +47,17 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/api/users/register")
-    public ResponseEntity<RegisterResponseDto> register(@Validated @RequestBody RegisterDto requestBody){
-        RegisterResponseDto dto = userService.register(requestBody);
+    @PostMapping("/api/users/create")
+    @PreAuthorize("hasRole('EMPLOYEE') || hasRole('ADMIN')")
+    public ResponseEntity<CreateUserResponseDto> create(@Validated @RequestBody CreateUserDto requestBody){
+        CreateUserResponseDto dto = userService.create(requestBody);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
+    }
+
+    @PatchMapping("/api/users/register/{email}")
+    public ResponseEntity<RegisterResponseDto> register(@PathVariable String email, @Validated @RequestBody RegisterDto requestBody){
+        RegisterResponseDto dto = userService.register(email, requestBody);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
     @PostMapping("/api/users/login")
     public ResponseEntity<LoginResponseDto> login(@Validated @RequestBody LoginDto requestBody){

@@ -49,27 +49,48 @@ public class UserService {
         }
     }
 
-    public RegisterResponseDto register(RegisterDto dto) {
-        Optional<UserEntity> existingUsername = userRepository.findByUsername(dto.getUsername());
-        if(existingUsername.isPresent()){
-            throw UserAlreadyExistsException.create(dto.getUsername());
-        }
+    public UpdateUserResponseDto update(long id, UpdateUserDto dto) {
+        var user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        user.setUsername(dto.getUsername());
+        user.setPassword(dto.getPassword());
+        user.setEmail(dto.getEmail());
+        user.setRole(dto.getRole());
+        user.setName(dto.getName());
+        userRepository.save(user);
 
+        return new UpdateUserResponseDto(user.getId(), user.getUsername(), user.getRole(), user.getEmail());
+    }
+
+    public CreateUserResponseDto create(CreateUserDto dto) {
         Optional<UserEntity> existingEmail = userRepository.findByEmail(dto.getEmail());
         if(existingEmail.isPresent()){
             throw EmailAlreadyExistsException.create(dto.getEmail());
         }
 
-
         var userEntity = new UserEntity();
-        userEntity.setUsername(dto.getUsername());
-        userEntity.setPassword(passwordEncoder.encode(dto.getPassword()));
         userEntity.setName(dto.getName());
         userEntity.setRole(dto.getRole());
         userEntity.setEmail(dto.getEmail());
         userRepository.save(userEntity);
 
-        return new RegisterResponseDto(userEntity.getId(), userEntity.getUsername(), userEntity.getRole());
+        return new CreateUserResponseDto(userEntity.getId(), userEntity.getName(), userEntity.getRole(), userEntity.getEmail());
+    }
+
+    public RegisterResponseDto register(String email, RegisterDto dto) {
+        var user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User with this email not found"));
+
+        Optional<UserEntity> existingUsername = userRepository.findByUsername(dto.getUsername());
+        if(existingUsername.isPresent()){
+            throw UserAlreadyExistsException.create(dto.getUsername());
+        }
+
+        user.setUsername(dto.getUsername());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        userRepository.save(user);
+
+        return new RegisterResponseDto(user.getUsername());
     }
 
     public LoginResponseDto login(LoginDto dto) {

@@ -34,6 +34,7 @@ public class LoanController {
     }
 
     @PostMapping("/api/loans")
+    @PreAuthorize("hasRole('EMPLOEE') || hasRole('ADMIN')")
     public ResponseEntity<CreateResponseLoanDto> create(@Validated @RequestBody CreateLoanDto loan) {
         var newLoan = loanService.create(loan);
         return new ResponseEntity<>(newLoan, HttpStatus.CREATED);

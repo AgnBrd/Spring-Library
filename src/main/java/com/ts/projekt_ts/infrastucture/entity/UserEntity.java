@@ -12,11 +12,11 @@ public class UserEntity {
     private long id;
 
     @Basic
-    @Column(name = "username", unique = true, nullable = false)
+    @Column(name = "username", unique = true)
     private String username;
 
     @Basic
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
 
     @Basic
