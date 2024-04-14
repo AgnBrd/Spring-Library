@@ -15,9 +15,7 @@ public class UpdateUserResponseDto {
         this.email = email;
     }
 
-    public long getUserId() {
-        return userId;
-    }
+    public long getUserId() {return userId;}
 
     public String getUsername() {
         return username;
@@ -46,4 +44,5 @@ public class UpdateUserResponseDto {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

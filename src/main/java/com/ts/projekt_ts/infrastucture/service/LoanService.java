@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,19 +27,36 @@ public class LoanService {
 
     }
 
+    /**
+     * Retrieves a list of all loans.
+     * @return a list of GetLoanDto objects representing all loans
+     */
     public List<GetLoanDto> getAll() {
+
         return loanRepository.findAll().stream()
                 .map(loan -> new GetLoanDto(loan.getId(), loan.getBook().getId(), loan.getUser().getId()))// loan.getLoanDate(), loan.getEndDate(), loan.getReturnDate(), loan.getBook(), loan.getUser())
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Retrieves a single loan by ID.
+     * @param id the ID of the loan to retrieve
+     * @return a GetLoanDto object representing the retrieved loan
+     */
     public GetLoanDto getOne(long id) {
+
         LoanEntity loan = loanRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Loan not found"));
         return new GetLoanDto(loan.getId(), loan.getUser().getId(), loan.getBook().getId());//loan.getLoanDate(), loan.getEndDate(), loan.getReturnDate(), Optional.ofNullable(loan.getBook()), Optional.ofNullable(loan.getUser()));
     }
 
+    /**
+     * Creates a new loan.
+     * @param loan the data for creating the new loan
+     * @return a CreateResponseLoanDto object representing the created loan
+     */
     public CreateResponseLoanDto create(CreateLoanDto loan) {
+
         LoanEntity loanEntity = new LoanEntity();
         UserEntity user = (userRepository.findById(loan.getUserId())).orElse(new UserEntity());
         BookEntity book = (bookRepository.findById(loan.getBookId())).orElse(new BookEntity());
@@ -55,7 +71,14 @@ public class LoanService {
         return new CreateResponseLoanDto(newLoan.getId(), newLoan.getLoanDate(), newLoan.getEndDate(), newLoan.getReturnDate(), userId, bookId);
     }
 
+    /**
+     * Updates a loan's information.
+     * @param id the ID of the loan to update
+     * @param dto the data to update the loan with
+     * @return an UpdateLoanResponseDto object representing the updated loan
+     */
     public UpdateLoanResponseDto update(long id, UpdateLoanDto dto) {
+
         var loan = loanRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Loan not found"));
         UserEntity user = (userRepository.findById(dto.getUserId())).orElse(new UserEntity());
@@ -71,7 +94,12 @@ public class LoanService {
         return new UpdateLoanResponseDto(loan.getLoanDate(), loan.getEndDate(), loan.getReturnDate(), userId, bookId);
     }
 
+    /**
+     * Deletes a loan by ID.
+     * @param id the ID of the loan to delete
+     */
     public void delete(long id) {
+
         if (!loanRepository.existsById(id)) {
             throw new RuntimeException("Loan not found");
         }

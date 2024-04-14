@@ -19,8 +19,7 @@ public class GetBookDto {
         this.isAvaliable = isAvaliable;
     }
 
-    public GetBookDto() {
-    }
+    public GetBookDto() {}
 
     public long getId() {
         return id;
@@ -77,4 +76,5 @@ public class GetBookDto {
     public void setIsAvaliable(boolean avaliable) {
         isAvaliable = avaliable;
     }
+
 }

@@ -6,15 +6,20 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Date;
 
 public class UpdateLoanDto {
+
     @NotNull(message = "Loan date is required")
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date loanDate;
+
     @NotNull(message = "End date is required")
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date endDate;
+
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date returnDate;
+
     private long userId;
+
     private long bookId;
 
     public UpdateLoanDto(Date loanDate, Date endDate, Date returnDate, long userId, long bookId) {
@@ -64,4 +69,5 @@ public class UpdateLoanDto {
     public void setBookId(long bookId) {
         this.bookId = bookId;
     }
+
 }

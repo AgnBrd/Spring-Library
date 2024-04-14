@@ -6,6 +6,11 @@ import java.util.Date;
 @Entity
 @Table(name = "loans", schema = "library_ts")
 public class LoanEntity {
+
+    /**
+     * Entity representing loan.
+     */
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -78,5 +83,5 @@ public class LoanEntity {
     public BookEntity getBook() {
         return book;
     }
-}
 
+}

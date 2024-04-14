@@ -47,9 +47,7 @@ public class UpdateBookResponseDto {
         return avaliableCopies;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public void setId(long id) { this.id = id; }
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
@@ -74,4 +72,5 @@ public class UpdateBookResponseDto {
     public void setAvaliableCopies(int avaliableCopies) {
         this.avaliableCopies = avaliableCopies;
     }
+
 }

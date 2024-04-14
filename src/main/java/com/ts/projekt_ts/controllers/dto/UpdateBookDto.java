@@ -3,12 +3,18 @@ package com.ts.projekt_ts.controllers.dto;
 import jakarta.validation.constraints.NotBlank;
 
 public class UpdateBookDto {
+
     @NotBlank(message = "Isbn is required")
     private String isbn;
+
     private String title;
+
     private String author;
+
     private String publisher;
+
     private int publicationYear;
+
     private int avaliableCopies;
 
     public UpdateBookDto(String isbn, String title, String author, String publisher, int publicationYear, int avaliableCopies) {
@@ -44,9 +50,7 @@ public class UpdateBookDto {
         return avaliableCopies;
     }
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
+    public void setIsbn(String isbn) { this.isbn = isbn; }
 
     public void setTitle(String title) {
         this.title = title;
@@ -67,4 +71,5 @@ public class UpdateBookDto {
     public void setAvaliableCopies(int avaliableCopies) {
         this.avaliableCopies = avaliableCopies;
     }
+
 }

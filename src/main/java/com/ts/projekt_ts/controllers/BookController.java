@@ -12,7 +12,9 @@ import java.util.List;
 
 @RestController
 public class BookController{
+
     private final BookService bookService;
+
     public BookController(BookService bookService) {
 
         this.bookService = bookService;
@@ -22,10 +24,12 @@ public class BookController{
     public List<GetBookDto> getAllBooks(){
         return bookService.getAll();
     }
+
     @GetMapping("/api/books/{id}")
     public GetBookDto getOne(@PathVariable long id){
         return bookService.getOne(id);
     }
+
     @PostMapping("/api/books")
     @PreAuthorize("hasRole('EMPLOYEE') || hasRole('ADMIN')")
     public ResponseEntity<CreateResponseBookDto> create(@Validated @RequestBody CreateBookDto book){
@@ -46,4 +50,5 @@ public class BookController{
         bookService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
 }

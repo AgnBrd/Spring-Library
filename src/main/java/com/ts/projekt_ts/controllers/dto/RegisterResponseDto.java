@@ -1,7 +1,5 @@
 package com.ts.projekt_ts.controllers.dto;
 
-import com.ts.projekt_ts.commonTypes.UserRole;
-
 public class RegisterResponseDto {
     private String username;
 

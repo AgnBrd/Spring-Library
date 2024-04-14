@@ -19,8 +19,7 @@ public class CreateResponseBookDto {
         this.avaliableCopies = avaliableCopies;
     }
 
-    public CreateResponseBookDto() {
-    }
+    public CreateResponseBookDto() {}
     public long getId(){
         return id;
     }
@@ -72,5 +71,5 @@ public class CreateResponseBookDto {
     public void setAvaliableCopies(int avaliableCopies) {
         this.avaliableCopies = avaliableCopies;
     }
-}
 
+}

@@ -3,8 +3,6 @@ package com.ts.projekt_ts.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -17,6 +15,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableMethodSecurity
 public class SecurityConfiguration {
+    /**
+     * Creates a SecurityConfiguration object with a JwtAuthFilter.
+     */
     private final JwtAuthFilter jwtAuthFilter;
 
     @Autowired
@@ -26,6 +27,12 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+        /**
+         * Configures the security filter chain.
+         * @param http the HttpSecurity object to configure
+         * @return the configured SecurityFilterChain
+         * @throws Exception if an error occurs during configuration
+         */
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -35,9 +42,11 @@ public class SecurityConfiguration {
 
     @Bean
     public PasswordEncoder passwordEncoder(){
+        /**
+         * Provides a BCryptPasswordEncoder bean for password encoding.
+         * @return a BCryptPasswordEncoder instance
+         */
         return new BCryptPasswordEncoder();
     }
-
-
 
 }

@@ -20,14 +20,29 @@ public class BookService {
     }
 
     public List<GetBookDto> getAll(){
+        /**
+         * Retrieves a list of all books.
+         * @return a list of GetBookDto objects representing all books
+         */
         var books =  bookRepository.findAll();
         return books.stream().map((book) -> new GetBookDto(book.getId(), book.getIsbn(), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getPublicationYear(), book.getAvaliableCopies() > 0)).collect(Collectors.toList());
     }
+
+    /**
+     * Retrieves a single book by ID.
+     * @param id the ID of the book to retrieve
+     * @return a GetBookDto object representing the retrieved book
+     */
     public GetBookDto getOne(long id){
         var book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
         return new GetBookDto(book.getId(), book.getIsbn(), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getPublicationYear(), book.getAvaliableCopies() > 0);
     }
 
+    /**
+     * Creates a new book.
+     * @param book the data for creating the new book
+     * @return a CreateResponseBookDto object representing the created book
+     */
     public CreateResponseBookDto create(CreateBookDto book){
         Optional<BookEntity> existingIsbn= bookRepository.findByIsbn(book.getIsbn());
         if(existingIsbn.isPresent()){
@@ -44,6 +59,12 @@ public class BookService {
         return new CreateResponseBookDto(newBook.getId(), newBook.getIsbn(), newBook.getTitle(), newBook.getAuthor(), newBook.getPublisher(), newBook.getPublicationYear(), newBook.getAvaliableCopies());
     }
 
+    /**
+     * Updates a book's information.
+     * @param id the ID of the book to update
+     * @param dto the data to update the book with
+     * @return an UpdateBookResponseDto object representing the updated book
+     */
     public UpdateBookResponseDto update(long id, UpdateBookDto dto) {
         var book = bookRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Book not found"));
@@ -57,6 +78,11 @@ public class BookService {
 
         return new UpdateBookResponseDto(book.getId(), book.getIsbn(), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getPublicationYear(), book.getAvaliableCopies());
     }
+
+    /**
+     * Deletes a book by ID.
+     * @param id the ID of the book to delete
+     */
     public void delete(long id){
         if(!bookRepository.existsById(id)){
             throw new RuntimeException("Book not found");

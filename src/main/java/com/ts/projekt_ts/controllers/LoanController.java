@@ -2,7 +2,6 @@ package com.ts.projekt_ts.controllers;
 
 import com.ts.projekt_ts.controllers.dto.*;
 import com.ts.projekt_ts.infrastucture.service.LoanService;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,6 +12,7 @@ import java.util.List;
 
 @RestController
 public class LoanController {
+
     private final LoanService loanService;
 
     public LoanController(LoanService loanService) {
@@ -51,5 +51,5 @@ public class LoanController {
         loanService.delete(id);
         return ResponseEntity.noContent().build();
     }
-}
 
+}

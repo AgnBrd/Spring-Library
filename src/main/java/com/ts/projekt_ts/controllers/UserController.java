@@ -12,8 +12,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping
-
 public class UserController {
+
     private final UserService userService;
 
     public UserController(UserService userService) {
@@ -39,7 +39,6 @@ public class UserController {
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-
     @DeleteMapping("/api/users/{id}")
     @PreAuthorize("hasRole('EMPLOYEE') || hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable long id) {
@@ -59,10 +58,11 @@ public class UserController {
         RegisterResponseDto dto = userService.register(email, requestBody);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
+
     @PostMapping("/api/users/login")
     public ResponseEntity<LoginResponseDto> login(@Validated @RequestBody LoginDto requestBody){
         LoginResponseDto dto = userService.login(requestBody);
         return new ResponseEntity<>(dto, HttpStatus.ACCEPTED);
     }
-}
 
+}

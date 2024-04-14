@@ -17,8 +17,7 @@ public class GetUserDto {
         this.email = email;
     }
 
-    public GetUserDto() {
-    }
+    public GetUserDto() {}
 
     public long getId() {
         return id;
@@ -59,5 +58,5 @@ public class GetUserDto {
     public void setEmail(String email) {
         this.email = email;
     }
-}
 
+}

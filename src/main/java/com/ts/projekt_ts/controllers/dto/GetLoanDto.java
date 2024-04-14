@@ -1,11 +1,5 @@
 package com.ts.projekt_ts.controllers.dto;
 
-import com.ts.projekt_ts.infrastucture.entity.BookEntity;
-import com.ts.projekt_ts.infrastucture.entity.UserEntity;
-
-import java.util.Date;
-import java.util.Optional;
-
 public class GetLoanDto {
     private long id;
     private long userId;
@@ -17,8 +11,7 @@ public class GetLoanDto {
         this.bookId = bookId;
     }
 
-    public GetLoanDto() {
-    }
+    public GetLoanDto() {}
 
     public long getId() {
         return id;
@@ -43,5 +36,5 @@ public class GetLoanDto {
     public void setBookId(long bookId) {
         this.bookId = bookId;
     }
-}
 
+}

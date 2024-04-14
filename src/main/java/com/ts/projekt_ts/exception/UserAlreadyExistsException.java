@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 public class UserAlreadyExistsException extends RuntimeException{
+
     private UserAlreadyExistsException(String message){
         super(message);
     }
@@ -12,4 +13,5 @@ public class UserAlreadyExistsException extends RuntimeException{
         UserAlreadyExistsException exception = new UserAlreadyExistsException(String.format("Username: %s is already occupied.", username));
         return new ResponseStatusException(HttpStatus.CONFLICT, exception.getMessage(), exception);
     }
+
 }

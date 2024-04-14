@@ -1,15 +1,12 @@
 package com.ts.projekt_ts.controllers.dto;
 
 import com.ts.projekt_ts.commonTypes.UserRole;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 public class UpdateUserDto {
     private String username;
     private String name;
     private UserRole role;
     private String password;
-//    @Email
     private String email;
 
     public UpdateUserDto(String username, String name, UserRole role, String password, String email) {
@@ -59,4 +56,5 @@ public class UpdateUserDto {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

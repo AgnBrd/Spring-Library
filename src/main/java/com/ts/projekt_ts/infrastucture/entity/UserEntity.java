@@ -6,6 +6,11 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "users", schema = "library_ts")
 public class UserEntity {
+
+    /**
+     * Entity representing the user.
+     */
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")

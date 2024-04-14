@@ -1,18 +1,22 @@
 package com.ts.projekt_ts.controllers.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
 public class UpdateLoanResponseDto {
+
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date loanDate;
+
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date endDate;
+
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date returnDate;
+
     private long userId;
+
     private long bookId;
 
     public UpdateLoanResponseDto(Date loanDate, Date endDate, Date returnDate, long userId, long bookId) {
@@ -62,4 +66,5 @@ public class UpdateLoanResponseDto {
     public void setBookId(long bookId) {
         this.bookId = bookId;
     }
+
 }

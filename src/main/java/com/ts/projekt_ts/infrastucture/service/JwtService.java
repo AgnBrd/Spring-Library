@@ -18,18 +18,36 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
-    long tokenLifeTime = 1000 * 60 * 24;
+    long tokenLifeTime = 1000 * 60 * 24; // to change
+
     @Value("${token.signing.key}")
     private String jwtSigningKey;
+
+    /**
+     * Generates a JWT token for the given user details.
+     * @param userDetails the user details for whom the token is generated
+     * @return a JWT token as a String
+     */
     public String generateToken(UserEntity userDetails){
 
         return generateToken(new HashMap<>(), userDetails);
     }
 
+    /**
+     * Extracts the role from the JWT token.
+     * @param token the JWT token
+     * @return the role extracted from the token
+     */
     public UserRole extractRole(String token){
         String roleString = extractClaim(token, (claims) -> claims.get("role", String.class));
         return UserRole.valueOf(roleString);
     }
+
+    /**
+     * Validates if a JWT token is still valid.
+     * @param token the JWT token
+     * @return true if the token is valid, otherwise false
+     */
     public boolean isTokenValid(String token){
         try{
             return !isTokenExpired(token);
@@ -37,6 +55,12 @@ public class JwtService {
             return false;
         }
     }
+
+    /**
+     * Extracts the username from the JWT token.
+     * @param token the JWT token
+     * @return the username extracted from the token
+     */
     public String extractUsername(String token){
 
         return extractClaim(token, Claims::getSubject);
@@ -61,6 +85,12 @@ public class JwtService {
         return Jwts.parser().verifyWith(getSingingKey()).build().parseSignedClaims(token).getPayload();
     }
 
+    /**
+     * Generates a JWT token with additional claims for the given user details.
+     * @param extraClaims additional claims to include in the token
+     * @param userDetails the user details for whom the token is generated
+     * @return a JWT token as a String
+     */
     public String generateToken(Map<String, Object> extraClaims, UserEntity userDetails){
         extraClaims.put("role", userDetails.getRole());
         return Jwts.builder()
