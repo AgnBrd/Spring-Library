@@ -33,7 +33,7 @@ public class UserController {
 }
 
     @PatchMapping("/api/users/{id}")
-//    @PreAuthorize("hasRole('EMPLOYEE') || hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UpdateUserResponseDto> update(@PathVariable long id, @Validated @RequestBody UpdateUserDto requestBody){
         UpdateUserResponseDto dto = userService.update(id, requestBody);
         return new ResponseEntity<>(dto, HttpStatus.OK);

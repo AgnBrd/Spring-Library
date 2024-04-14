@@ -1,8 +1,6 @@
 package com.ts.projekt_ts.controllers;
 
-import com.ts.projekt_ts.controllers.dto.CreateBookDto;
-import com.ts.projekt_ts.controllers.dto.CreateResponseBookDto;
-import com.ts.projekt_ts.controllers.dto.GetBookDto;
+import com.ts.projekt_ts.controllers.dto.*;
 import com.ts.projekt_ts.infrastucture.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +32,14 @@ public class BookController{
         var newBook = bookService.create(book);
         return new ResponseEntity<>(newBook, HttpStatus.CREATED);
     }
+
+    @PatchMapping("/api/books/{id}")
+    @PreAuthorize("hasRole('EMPLOYEE') || hasRole('ADMIN')")
+    public ResponseEntity<UpdateBookResponseDto> update(@PathVariable long id, @Validated @RequestBody UpdateBookDto requestBody){
+        UpdateBookResponseDto dto = bookService.update(id, requestBody);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
     @DeleteMapping("/api/books/{id}")
     @PreAuthorize("hasRole('EMPLOYEE') || hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable long id){

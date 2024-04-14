@@ -1,8 +1,6 @@
 package com.ts.projekt_ts.controllers;
 
-import com.ts.projekt_ts.controllers.dto.CreateLoanDto;
-import com.ts.projekt_ts.controllers.dto.CreateResponseLoanDto;
-import com.ts.projekt_ts.controllers.dto.GetLoanDto;
+import com.ts.projekt_ts.controllers.dto.*;
 import com.ts.projekt_ts.infrastucture.service.LoanService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -40,8 +38,15 @@ public class LoanController {
         return new ResponseEntity<>(newLoan, HttpStatus.CREATED);
     }
 
+    @PatchMapping("/api/loans/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<UpdateLoanResponseDto> update(@PathVariable long id, @Validated @RequestBody UpdateLoanDto loan) {
+        var newLoan = loanService.update(id, loan);
+        return new ResponseEntity<>(newLoan, HttpStatus.OK);
+    }
+
     @DeleteMapping("/api/loans/{id}")
-    @PreAuthorize("hasRole('EMPLOEE') || hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable long id) {
         loanService.delete(id);
         return ResponseEntity.noContent().build();

@@ -1,8 +1,6 @@
 package com.ts.projekt_ts.infrastucture.service;
 
-import com.ts.projekt_ts.controllers.dto.CreateLoanDto;
-import com.ts.projekt_ts.controllers.dto.CreateResponseLoanDto;
-import com.ts.projekt_ts.controllers.dto.GetLoanDto;
+import com.ts.projekt_ts.controllers.dto.*;
 import com.ts.projekt_ts.infrastucture.entity.BookEntity;
 import com.ts.projekt_ts.infrastucture.entity.LoanEntity;
 import com.ts.projekt_ts.infrastucture.entity.UserEntity;
@@ -55,6 +53,22 @@ public class LoanService {
         long userId = newLoan.getUser().getId();
         long bookId = newLoan.getBook().getId();
         return new CreateResponseLoanDto(newLoan.getId(), newLoan.getLoanDate(), newLoan.getEndDate(), newLoan.getReturnDate(), userId, bookId);
+    }
+
+    public UpdateLoanResponseDto update(long id, UpdateLoanDto dto) {
+        var loan = loanRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Loan not found"));
+        UserEntity user = (userRepository.findById(dto.getUserId())).orElse(new UserEntity());
+        BookEntity book = (bookRepository.findById(dto.getBookId())).orElse(new BookEntity());
+        loan.setLoanDate(dto.getLoanDate());
+        loan.setEndDate(dto.getEndDate());
+        loan.setReturnDate(dto.getReturnDate());
+        loan.setUser(user);
+        loan.setBook(book);
+        loanRepository.save(loan);
+        long userId = loan.getUser().getId();
+        long bookId = loan.getBook().getId();
+        return new UpdateLoanResponseDto(loan.getLoanDate(), loan.getEndDate(), loan.getReturnDate(), userId, bookId);
     }
 
     public void delete(long id) {
