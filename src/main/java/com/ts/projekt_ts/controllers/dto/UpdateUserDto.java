@@ -6,14 +6,12 @@ public class UpdateUserDto {
     private String username;
     private String name;
     private UserRole role;
-    private String password;
     private String email;
 
-    public UpdateUserDto(String username, String name, UserRole role, String password, String email) {
+    public UpdateUserDto(String username, String name, UserRole role, String email) {
         this.username = username;
         this.name = name;
         this.role = role;
-        this.password = password;
         this.email = email;
     }
 
@@ -27,10 +25,6 @@ public class UpdateUserDto {
 
     public UserRole getRole() {
         return role;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public String getEmail() {
@@ -47,10 +41,6 @@ public class UpdateUserDto {
 
     public void setRole(UserRole role) {
         this.role = role;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public void setEmail(String email) {

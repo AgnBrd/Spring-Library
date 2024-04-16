@@ -76,7 +76,6 @@ public class UserService {
         var user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         user.setUsername(dto.getUsername());
-        user.setPassword(dto.getPassword());
         user.setEmail(dto.getEmail());
         user.setRole(dto.getRole());
         user.setName(dto.getName());

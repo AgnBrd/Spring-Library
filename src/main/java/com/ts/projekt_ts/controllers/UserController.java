@@ -47,7 +47,7 @@ public class UserController {
     }
 
     @PostMapping("/api/users/create")
-    @PreAuthorize("hasRole('EMPLOYEE') || hasRole('ADMIN')")
+    @PreAuthorize("hasRole('EMPLOYEE') || hasRole('ADMIN')") // Only admin or employee can add the user. Then users can register themselves by typing already existing in database email and creating their own username and password
     public ResponseEntity<CreateUserResponseDto> create(@Validated @RequestBody CreateUserDto requestBody){
         CreateUserResponseDto dto = userService.create(requestBody);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
