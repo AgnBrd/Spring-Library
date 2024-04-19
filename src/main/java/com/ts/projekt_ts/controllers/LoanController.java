@@ -2,6 +2,7 @@ package com.ts.projekt_ts.controllers;
 
 import com.ts.projekt_ts.controllers.dto.*;
 import com.ts.projekt_ts.infrastucture.service.LoanService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Tag(name = "Loans")
 public class LoanController {
 
     private final LoanService loanService;

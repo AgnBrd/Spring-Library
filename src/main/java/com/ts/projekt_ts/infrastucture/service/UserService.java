@@ -3,7 +3,9 @@ package com.ts.projekt_ts.infrastucture.service;
 import com.ts.projekt_ts.controllers.dto.*;
 
 import com.ts.projekt_ts.exception.EmailAlreadyExistsException;
+import com.ts.projekt_ts.exception.IncorrectPasswordException;
 import com.ts.projekt_ts.exception.UserAlreadyExistsException;
+import com.ts.projekt_ts.exception.UsernameNotExistsException;
 import com.ts.projekt_ts.infrastucture.entity.UserEntity;
 import com.ts.projekt_ts.infrastucture.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,7 +139,7 @@ public class UserService {
 
         Optional<UserEntity> notExistingUsername = userRepository.findByUsername(dto.getUsername());
         if(!notExistingUsername.isPresent()){
-            throw UserAlreadyExistsException.create(dto.getUsername());
+            throw UsernameNotExistsException.create(dto.getUsername());
         }
 
         UserEntity userEntity = userRepository.findByUsername(dto.getUsername()).orElseThrow(() -> new RuntimeException("user not found"));
@@ -146,7 +148,7 @@ public class UserService {
 
             return new LoginResponseDto(token);
         } else {
-            throw new RuntimeException("incorect password");
+            throw IncorrectPasswordException.create();
 
         }
     }

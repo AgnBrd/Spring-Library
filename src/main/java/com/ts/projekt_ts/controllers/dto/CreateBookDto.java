@@ -1,20 +1,22 @@
 package com.ts.projekt_ts.controllers.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 
 public class CreateBookDto {
 
     @NotBlank(message = "Isbn is required")
+    @Schema(name = "isbn", example = "123456")
     private String isbn;
-
+    @Schema(name = "title", example = "title")
     private String title;
-
+    @Schema(name = "author", example = "author")
     private String author;
-
+    @Schema(name = "publisher", example = "publisher")
     private String publisher;
-
+    @Schema(name = "publicationYear", example = "2020")
     private int publicationYear;
-
+    @Schema(name = "avaliableCopies", example = "2")
     private int avaliableCopies;
 
     public CreateBookDto(String isbn, String title, String author, String publisher, int publicationYear, int avaliableCopies) {

@@ -2,6 +2,8 @@ package com.ts.projekt_ts.controllers;
 
 import com.ts.projekt_ts.controllers.dto.*;
 import com.ts.projekt_ts.infrastucture.service.BookService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Tag(name = "Books")
 public class BookController{
 
     private final BookService bookService;
@@ -21,11 +24,13 @@ public class BookController{
     }
 
     @GetMapping("/api/books")
+    @SecurityRequirements
     public List<GetBookDto> getAllBooks(){
         return bookService.getAll();
     }
 
     @GetMapping("/api/books/{id}")
+    @SecurityRequirements
     public GetBookDto getOne(@PathVariable long id){
         return bookService.getOne(id);
     }

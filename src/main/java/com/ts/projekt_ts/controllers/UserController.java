@@ -2,6 +2,12 @@ package com.ts.projekt_ts.controllers;
 
 import com.ts.projekt_ts.controllers.dto.*;
 import com.ts.projekt_ts.infrastucture.service.UserService;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping
+@Tag(name = "Users")
 public class UserController {
 
     private final UserService userService;
@@ -54,12 +61,20 @@ public class UserController {
     }
 
     @PatchMapping("/api/users/register/{email}")
+    @SecurityRequirements
+    @ApiResponse(responseCode = "200")
     public ResponseEntity<RegisterResponseDto> register(@PathVariable String email, @Validated @RequestBody RegisterDto requestBody){
         RegisterResponseDto dto = userService.register(email, requestBody);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @PostMapping("/api/users/login")
+    @SecurityRequirements
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "202", description = "Login succeeded"),
+        @ApiResponse(responseCode = "404", description = "Login faild - user not found", content = @Content),
+            @ApiResponse(responseCode = "401", description = "Login faild - incorrect password", content = @Content)
+    })
     public ResponseEntity<LoginResponseDto> login(@Validated @RequestBody LoginDto requestBody){
         LoginResponseDto dto = userService.login(requestBody);
         return new ResponseEntity<>(dto, HttpStatus.ACCEPTED);
