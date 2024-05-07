@@ -1,3 +1,1 @@
-# Technologie Sieciowe
-## laboratorium 2024
-### Agnieszka Brdys
+# Spring application for library
