@@ -1,5 +1,6 @@
 package com.ts.projekt_ts.infrastucture.service;
 
+import com.ts.projekt_ts.commonTypes.UserRole;
 import com.ts.projekt_ts.controllers.dto.*;
 
 import com.ts.projekt_ts.exception.EmailAlreadyExistsException;
@@ -144,9 +145,12 @@ public class UserService {
 
         UserEntity userEntity = userRepository.findByUsername(dto.getUsername()).orElseThrow(() -> new RuntimeException("user not found"));
         if (passwordEncoder.matches(dto.getPassword(), userEntity.getPassword())) {
+            var user = userRepository.findByUsername(dto.getUsername())
+                    .orElseThrow(() -> new RuntimeException("User not found"));
             String token = jwtService.generateToken(userEntity);
+            UserRole role = user.getRole();
 
-            return new LoginResponseDto(token);
+            return new LoginResponseDto(token, role);
         } else {
             throw IncorrectPasswordException.create();
 
