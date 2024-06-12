@@ -22,7 +22,7 @@ public class LoanController {
     }
 
     @GetMapping("/api/loans")
-    @PreAuthorize("hasRole('EMPLOEE') || hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('EMPLOEE') || hasRole('ADMIN')")
     public List<GetLoanDto> getAllLoans() {
         return loanService.getAll();
     }

@@ -11,16 +11,16 @@ public class CreateLoanDto {
     @NotNull(message = "Loan date is required")
     @JsonFormat(pattern="yyyy-MM-dd")
     @Schema(name = "loanDate", example = "2023-12-12")
-    private Date loanDate;
+    private String loanDate;
 
     @NotNull(message = "End date is required")
     @JsonFormat(pattern="yyyy-MM-dd")
     @Schema(name = "endDate", example = "2024-02-04")
-    private Date endDate;
+    private String endDate;
 
     @JsonFormat(pattern="yyyy-MM-dd")
     @Schema(name = "returnDate", example = "2024-01-30")
-    private Date returnDate;
+    private String returnDate;
     @Schema(name = "userId", example = "1")
     private long userId;
     @Schema(name = "bookId", example = "1")
@@ -28,7 +28,7 @@ public class CreateLoanDto {
 
     public CreateLoanDto() {}
 
-    public CreateLoanDto(Date loanDate, Date endDate, Date returnDate, long userId, long bookId) {
+    public CreateLoanDto(String loanDate, String endDate, String returnDate, long userId, long bookId) {
         this.loanDate = loanDate;
         this.endDate = endDate;
         this.returnDate = returnDate;
@@ -36,15 +36,15 @@ public class CreateLoanDto {
         this.bookId = bookId;
     }
 
-    public Date getLoanDate() {
+    public String getLoanDate() {
         return loanDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public Date getReturnDate() {
+    public String getReturnDate() {
         return returnDate;
     }
 
@@ -56,15 +56,15 @@ public class CreateLoanDto {
         return bookId;
     }
 
-    public void setLoanDate(Date loanDate) {
+    public void setLoanDate(String loanDate) {
         this.loanDate = loanDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
-    public void setReturnDate(Date returnDate) {
+    public void setReturnDate(String returnDate) {
         this.returnDate = returnDate;
     }
 

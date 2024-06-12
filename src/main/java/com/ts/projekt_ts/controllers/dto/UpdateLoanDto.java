@@ -9,20 +9,20 @@ public class UpdateLoanDto {
 
     @NotNull(message = "Loan date is required")
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date loanDate;
+    private String loanDate;
 
     @NotNull(message = "End date is required")
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date endDate;
+    private String endDate;
 
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date returnDate;
+    private String returnDate;
 
     private long userId;
 
     private long bookId;
 
-    public UpdateLoanDto(Date loanDate, Date endDate, Date returnDate, long userId, long bookId) {
+    public UpdateLoanDto(String loanDate, String endDate, String returnDate, long userId, long bookId) {
         this.loanDate = loanDate;
         this.endDate = endDate;
         this.returnDate = returnDate;
@@ -30,15 +30,15 @@ public class UpdateLoanDto {
         this.bookId = bookId;
     }
 
-    public Date getLoanDate() {
+    public String getLoanDate() {
         return loanDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public Date getReturnDate() {
+    public String getReturnDate() {
         return returnDate;
     }
 
@@ -50,15 +50,15 @@ public class UpdateLoanDto {
         return bookId;
     }
 
-    public void setLoanDate(Date loanDate) {
+    public void setLoanDate(String loanDate) {
         this.loanDate = loanDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
-    public void setReturnDate(Date returnDate) {
+    public void setReturnDate(String returnDate) {
         this.returnDate = returnDate;
     }
 

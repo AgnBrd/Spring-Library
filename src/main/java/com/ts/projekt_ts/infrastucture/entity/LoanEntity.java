@@ -18,15 +18,15 @@ public class LoanEntity {
 
     @Basic
     @Column(name = "loanDate", nullable = false)
-    private Date loanDate;
+    private String loanDate;
 
     @Basic
     @Column(name = "endDate", nullable = false)
-    private Date endDate;
+    private String endDate;
 
     @Basic
     @Column(name = "returnDate")
-    private Date returnDate;
+    private String returnDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -40,15 +40,15 @@ public class LoanEntity {
         this.id = id;
     }
 
-    public void setLoanDate(Date loanDate) {
+    public void setLoanDate(String loanDate) {
         this.loanDate = loanDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
-    public void setReturnDate(Date returnDate) {
+    public void setReturnDate(String returnDate) {
         this.returnDate = returnDate;
     }
 
@@ -64,15 +64,15 @@ public class LoanEntity {
         return id;
     }
 
-    public Date getLoanDate() {
+    public String getLoanDate() {
         return loanDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public Date getReturnDate() {
+    public String getReturnDate() {
         return returnDate;
     }
 

@@ -7,19 +7,19 @@ import java.util.Date;
 public class UpdateLoanResponseDto {
 
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date loanDate;
+    private String loanDate;
 
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date endDate;
+    private String endDate;
 
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date returnDate;
+    private String returnDate;
 
     private long userId;
 
     private long bookId;
 
-    public UpdateLoanResponseDto(Date loanDate, Date endDate, Date returnDate, long userId, long bookId) {
+    public UpdateLoanResponseDto(String loanDate, String endDate, String returnDate, long userId, long bookId) {
         this.loanDate = loanDate;
         this.endDate = endDate;
         this.returnDate = returnDate;
@@ -27,15 +27,15 @@ public class UpdateLoanResponseDto {
         this.bookId = bookId;
     }
 
-    public Date getLoanDate() {
+    public String getLoanDate() {
         return loanDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public Date getReturnDate() {
+    public String getReturnDate() {
         return returnDate;
     }
 
@@ -47,15 +47,15 @@ public class UpdateLoanResponseDto {
         return bookId;
     }
 
-    public void setLoanDate(Date loanDate) {
+    public void setLoanDate(String loanDate) {
         this.loanDate = loanDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
-    public void setReturnDate(Date returnDate) {
+    public void setReturnDate(String returnDate) {
         this.returnDate = returnDate;
     }
 

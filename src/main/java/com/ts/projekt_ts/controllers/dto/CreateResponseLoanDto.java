@@ -1,26 +1,25 @@
 package com.ts.projekt_ts.controllers.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import java.util.Date;
 
 public class CreateResponseLoanDto {
 
     private long id;
 
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date loanDate;
+    private String loanDate;
 
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date endDate;
+    private String endDate;
 
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date returnDate;
+    private String returnDate;
 
     private long userId;
 
     private long bookId;
 
-    public CreateResponseLoanDto(long id, Date loanDate, Date endDate, Date returnDate, long userId, long bookId) {
+    public CreateResponseLoanDto(long id, String loanDate, String endDate, String returnDate, long userId, long bookId) {
         this.id = id;
         this.loanDate = loanDate;
         this.endDate = endDate;
@@ -35,15 +34,15 @@ public class CreateResponseLoanDto {
         return id;
     }
 
-    public Date getLoanDate() {
+    public String getLoanDate() {
         return loanDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public Date getReturnDate() {
+    public String getReturnDate() {
         return returnDate;
     }
 
@@ -59,15 +58,15 @@ public class CreateResponseLoanDto {
         this.id = id;
     }
 
-    public void setLoanDate(Date loanDate) {
+    public void setLoanDate(String loanDate) {
         this.loanDate = loanDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
-    public void setReturnDate(Date returnDate) {
+    public void setReturnDate(String returnDate) {
         this.returnDate = returnDate;
     }
 
