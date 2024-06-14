@@ -34,7 +34,7 @@ public class LoanService {
     public List<GetLoanDto> getAll() {
 
         return loanRepository.findAll().stream()
-                .map(loan -> new GetLoanDto(loan.getId(), loan.getLoanDate(), loan.getEndDate(), loan.getReturnDate(), loan.getBook().getId(), loan.getUser().getId()))
+                .map(loan -> new GetLoanDto(loan.getId(), loan.getLoanDate(), loan.getEndDate(), loan.getReturnDate(), loan.getBook().getId(), loan.getUser().getId(), loan.getBook().getTitle()))
                 .collect(Collectors.toList());
     }
 
@@ -47,7 +47,7 @@ public class LoanService {
 
         LoanEntity loan = loanRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Loan not found"));
-        return new GetLoanDto(loan.getId(), loan.getLoanDate(), loan.getEndDate(), loan.getReturnDate(), loan.getUser().getId(), loan.getBook().getId());//loan.getLoanDate(), loan.getEndDate(), loan.getReturnDate(), Optional.ofNullable(loan.getBook()), Optional.ofNullable(loan.getUser()));
+        return new GetLoanDto(loan.getId(), loan.getLoanDate(), loan.getEndDate(), loan.getReturnDate(), loan.getUser().getId(), loan.getBook().getId(), loan.getBook().getTitle());//loan.getLoanDate(), loan.getEndDate(), loan.getReturnDate(), Optional.ofNullable(loan.getBook()), Optional.ofNullable(loan.getUser()));
     }
 
     /**

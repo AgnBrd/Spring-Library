@@ -7,14 +7,16 @@ public class GetLoanDto {
     private String return_date;
     private long userId;
     private long bookId;
+    private String title;
 
-    public GetLoanDto(long id, String loan_date, String end_date, String return_date, long userId, long bookId) {
+    public GetLoanDto(long id, String loan_date, String end_date, String return_date, long userId, long bookId, String title) {
         this.id = id;
         this.loan_date = loan_date;
         this.end_date = end_date;
         this.return_date = return_date;
         this.userId = userId;
         this.bookId = bookId;
+        this.title = title;
     }
 
     public GetLoanDto() {}
@@ -65,5 +67,13 @@ public class GetLoanDto {
 
     public void setBookId(long bookId) {
         this.bookId = bookId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

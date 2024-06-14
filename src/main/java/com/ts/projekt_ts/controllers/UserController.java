@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @GetMapping("/api/users")
-    @PreAuthorize("hasRole('EMPLOYEE') || hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('EMPLOYEE') || hasRole('ADMIN')")
     public List<GetUserDto> getAllUsers() {
         return userService.getAll();
     }
