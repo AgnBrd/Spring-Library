@@ -15,15 +15,15 @@ public class UpdateBookDto {
 
     private int publicationYear;
 
-    private int avaliableCopies;
+    private int availableCopies;
 
-    public UpdateBookDto(String isbn, String title, String author, String publisher, int publicationYear, int avaliableCopies) {
+    public UpdateBookDto(String isbn, String title, String author, String publisher, int publicationYear, int availableCopies) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.publicationYear = publicationYear;
-        this.avaliableCopies = avaliableCopies;
+        this.availableCopies = availableCopies;
     }
 
     public String getIsbn() {
@@ -46,8 +46,8 @@ public class UpdateBookDto {
         return publicationYear;
     }
 
-    public int getAvaliableCopies() {
-        return avaliableCopies;
+    public int getAvailableCopies() {
+        return availableCopies;
     }
 
     public void setIsbn(String isbn) { this.isbn = isbn; }
@@ -68,8 +68,8 @@ public class UpdateBookDto {
         this.publicationYear = publicationYear;
     }
 
-    public void setAvaliableCopies(int avaliableCopies) {
-        this.avaliableCopies = avaliableCopies;
+    public void setAvailableCopies(int availableCopies) {
+        this.availableCopies = availableCopies;
     }
 
 }

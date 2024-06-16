@@ -16,16 +16,16 @@ public class CreateBookDto {
     private String publisher;
     @Schema(name = "publicationYear", example = "2020")
     private int publicationYear;
-    @Schema(name = "avaliableCopies", example = "2")
-    private int avaliableCopies;
+    @Schema(name = "availableCopies", example = "2")
+    private int availableCopies;
 
-    public CreateBookDto(String isbn, String title, String author, String publisher, int publicationYear, int avaliableCopies) {
+    public CreateBookDto(String isbn, String title, String author, String publisher, int publicationYear, int availableCopies) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.publicationYear = publicationYear;
-        this.avaliableCopies = avaliableCopies;
+        this.availableCopies = availableCopies;
     }
 
     public CreateBookDto() {}
@@ -50,8 +50,8 @@ public class CreateBookDto {
         return publicationYear;
     }
 
-    public int getAvaliableCopies() {
-        return avaliableCopies;
+    public int getAvailableCopies() {
+        return availableCopies;
     }
 
     public void setIsbn(String isbn) {
@@ -74,8 +74,8 @@ public class CreateBookDto {
         this.publicationYear = publicationYear;
     }
 
-    public void setAvaliableCopies(int avaliableCopies) {
-        this.avaliableCopies = avaliableCopies;
+    public void setAvailableCopies(int availableCopies) {
+        this.availableCopies = availableCopies;
     }
 
 }

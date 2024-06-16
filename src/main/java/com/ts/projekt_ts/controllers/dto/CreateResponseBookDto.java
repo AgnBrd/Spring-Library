@@ -7,16 +7,16 @@ public class CreateResponseBookDto {
     private String author;
     private String publisher;
     private int publicationYear;
-    private int avaliableCopies;
+    private int availableCopies;
 
-    public CreateResponseBookDto(long id, String isbn, String title, String author, String publisher, int publicationYear, int avaliableCopies) {
+    public CreateResponseBookDto(long id, String isbn, String title, String author, String publisher, int publicationYear, int availableCopies) {
         this.id = id;
         this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.publicationYear = publicationYear;
-        this.avaliableCopies = avaliableCopies;
+        this.availableCopies = availableCopies;
     }
 
     public CreateResponseBookDto() {}
@@ -44,8 +44,8 @@ public class CreateResponseBookDto {
         return publicationYear;
     }
 
-    public int getAvaliableCopies() {
-        return avaliableCopies;
+    public int getAvailableCopies() {
+        return availableCopies;
     }
 
     public void setIsbn(String isbn) {
@@ -68,8 +68,8 @@ public class CreateResponseBookDto {
         this.publicationYear = publicationYear;
     }
 
-    public void setAvaliableCopies(int avaliableCopies) {
-        this.avaliableCopies = avaliableCopies;
+    public void setAvailableCopies(int availableCopies) {
+        this.availableCopies = availableCopies;
     }
 
 }

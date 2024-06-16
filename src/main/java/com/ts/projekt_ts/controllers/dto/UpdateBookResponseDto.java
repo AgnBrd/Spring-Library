@@ -7,16 +7,16 @@ public class UpdateBookResponseDto {
     private String author;
     private String publisher;
     private int publicationYear;
-    private int avaliableCopies;
+    private int availableCopies;
 
-    public UpdateBookResponseDto(long id, String isbn, String title, String author, String publisher, int publicationYear, int avaliableCopies) {
+    public UpdateBookResponseDto(long id, String isbn, String title, String author, String publisher, int publicationYear, int availableCopies) {
         this.id = id;
         this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.publicationYear = publicationYear;
-        this.avaliableCopies = avaliableCopies;
+        this.availableCopies = availableCopies;
     }
 
     public long getId() {
@@ -43,8 +43,8 @@ public class UpdateBookResponseDto {
         return publicationYear;
     }
 
-    public int getAvaliableCopies() {
-        return avaliableCopies;
+    public int getAvailableCopies() {
+        return availableCopies;
     }
 
     public void setId(long id) { this.id = id; }
@@ -69,8 +69,8 @@ public class UpdateBookResponseDto {
         this.publicationYear = publicationYear;
     }
 
-    public void setAvaliableCopies(int avaliableCopies) {
-        this.avaliableCopies = avaliableCopies;
+    public void setAvailableCopies(int availableCopies) {
+        this.availableCopies = availableCopies;
     }
 
 }

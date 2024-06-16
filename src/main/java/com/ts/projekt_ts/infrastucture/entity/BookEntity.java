@@ -36,8 +36,8 @@ public class BookEntity {
     private int publicationYear;
 
     @Basic
-    @Column(name = "avaliableCopies")
-    private int avaliableCopies;
+    @Column(name = "availableCopies")
+    private int availableCopies;
 
     public void setId(long id) {
         this.id = id;
@@ -63,8 +63,8 @@ public class BookEntity {
         this.publicationYear = Integer.parseInt(publicationYear);
     }
 
-    public void setAvaliableCopies(String avaliableCopies) {
-        this.avaliableCopies = Integer.parseInt(avaliableCopies);
+    public void setAvailableCopies(String availableCopies) {
+        this.availableCopies = Integer.parseInt(availableCopies);
     }
 
     public long getId() {
@@ -91,8 +91,8 @@ public class BookEntity {
         return publicationYear;
     }
 
-    public int getAvaliableCopies() {
-        return avaliableCopies;
+    public int getAvailableCopies() {
+        return availableCopies;
     }
 
 }
