@@ -13,9 +13,14 @@ public class RegisterDto {
     @Schema(name = "password", example = "password")
     private String password;
 
+//    @NotBlank(message = "Email is required")
+//    @Schema(name = "email", example = "email")
+//    private String email;
+
     public RegisterDto(String username, String password) {
         this.username = username;
         this.password = password;
+//        this.email = email;
     }
 
     public String getPassword() {
@@ -26,6 +31,10 @@ public class RegisterDto {
         return username;
     }
 
+//    public String getEmail() {
+//        return email;
+//    }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -34,4 +43,7 @@ public class RegisterDto {
         this.password = password;
     }
 
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
 }
